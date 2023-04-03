@@ -1,0 +1,22 @@
+
+.progressBar {
+    width: 161px;
+    height: 161px;
+}
+
+.timerBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+.timerHeader, .timerDescription {
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.timerDescription {
+    font-size: 20px;
+}

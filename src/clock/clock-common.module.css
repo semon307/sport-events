@@ -1,0 +1,17 @@
+.timeBlock {
+    /*padding: 9px 50px;*/
+    display: flex;
+    /*justify-content: center;*/
+    align-items: center;
+    flex-direction: column;
+}
+
+.time, .date {
+    color: white;
+    font-size: 96px;
+    font-weight: bold;
+}
+
+.date {
+    font-size: 22px;
+}
