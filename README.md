@@ -22,7 +22,7 @@ Sports Events Tracker is a React-based application that allows users to view cur
 1. Clone the repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/semon307/sport-events-app.git 
+git clone https://github.com/semon307/sport-events.git 
 ```
 2. Navigate to the root directory of the project::
 
