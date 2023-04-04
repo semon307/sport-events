@@ -55,7 +55,7 @@ const App = () => {
   // fetching data once in a minute for live updates
   useEffect(() => {
     const intervalId = setInterval(() => {
-      // dispatch(sportEventsTC());
+      dispatch(sportEventsTC());
     }, 60000);
 
     return () => clearInterval(intervalId);
@@ -65,7 +65,6 @@ const App = () => {
   // getting known if first event in the result array is current event
   useEffect(() => {
     setIsEventNow(new Date().getTime() > sportsEventsPage.current_and_upcoming[0]?.dt_start.getTime());
-    console.log('isEventNow', isEventNow);
   }, [sportsEventsPage.current_and_upcoming]);
 
   //logic for timer and widget

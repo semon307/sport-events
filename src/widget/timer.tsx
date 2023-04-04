@@ -40,7 +40,6 @@ export const Timer: React.FC<TimerProps> = (props) => {
 
   if (props.type === TimerType.DAYS && props.value > TimerAppearance[TimerType.DAYS].maxValue){
     daysValue = props.value % TimerAppearance[TimerType.DAYS].maxValue;
-    console.log('maxDaysValue', daysValue);
   }
   return (
     <CircularProgressbarWithChildren

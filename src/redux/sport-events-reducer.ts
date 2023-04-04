@@ -46,7 +46,6 @@ export const sportEventsTC = () => (dispatch: Dispatch) => {
     .then((res) => {
       const mappedSportEvents = res.data.data.videostandEvents.current_and_upcoming.map(mapSportEvent)
         .sort((a: SportEvent, b: SportEvent) => a.dt_start.getTime() - b.dt_start.getTime());
-      console.log('mapped events>>>', mappedSportEvents);
       dispatch(setSportEventsAC(mappedSportEvents));
     })
     .catch((error) => {
