@@ -10,20 +10,20 @@ export type SportsEventsPageState = {
 
 const initialState: SportsEventsPageState = {
   current_and_upcoming: [
-    {
-      title: 'Международный шахматный форум "Moscow Open" Международный шахматный форум',
-      is_main: false,
-      dt_start: new Date('2023-04-02T16:00:00+03:00'),
-      dt_end: new Date ('2024-04-20T20:00:00+03:00'),
-      dt_create: new Date ('2022-06-28T11:18:29+03:00')
-    },
-    {
-      title: 'Test Event',
-      is_main: false,
-      dt_start: new Date('2023-04-26T16:00:00+03:00'),
-      dt_end: new Date ('2023-04-20T20:00:00+03:00'),
-      dt_create: new Date ('2022-06-28T11:18:29+03:00')
-    }
+    // {
+    //   title: 'Международный шахматный форум "Moscow Open" Международный шахматный форум',
+    //   is_main: false,
+    //   dt_start: new Date('2024-04-02T16:00:00+03:00'),
+    //   dt_end: new Date ('2024-04-20T20:00:00+03:00'),
+    //   dt_create: new Date ('2022-06-28T11:18:29+03:00')
+    // },
+    // {
+    //   title: 'Test Event',
+    //   is_main: false,
+    //   dt_start: new Date('2024-04-26T16:00:00+03:00'),
+    //   dt_end: new Date ('2024-04-28T20:00:00+03:00'),
+    //   dt_create: new Date ('2022-06-28T11:18:29+03:00')
+    // }
   ],
 
 };
@@ -44,10 +44,8 @@ export const setSportEventsAC = slice.actions.setSportEventsAC;
 export const sportEventsTC = () => (dispatch: Dispatch) => {
   sportEventsAPI.getSportEvents()
     .then((res) => {
-      // console.log('res.data.data.videostandEvents.current_and_upcoming', res.data.data.videostandEvents.finished);
       const mappedSportEvents = res.data.data.videostandEvents.current_and_upcoming.map(mapSportEvent)
         .sort((a: SportEvent, b: SportEvent) => a.dt_start.getTime() - b.dt_start.getTime());
-      // dispatch(setSportEventsAC(res.data.data.videostandEvents.current_and_upcoming));
       console.log('mapped events>>>', mappedSportEvents);
       dispatch(setSportEventsAC(mappedSportEvents));
     })

@@ -21,16 +21,35 @@ const App = () => {
   const [clockTime, setClockTime] = useState('');
   const [clockWeekDay, setClockWeekDay] = useState('');
   const [clockMonthDay, setClockMonthDay] = useState('');
-  const [timeDifference, setTimeDifference] = useState<TimeDifferenceType>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  const [timeDifference, setTimeDifference] = useState<TimeDifferenceType>(
+    {
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+    }
+  );
 
-  //fetching data for first render
+  const updateClock = () => {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    if (sportsEventsPage.current_and_upcoming[0]?.dt_start) {
+      setTimeDifference(getDateDiff(new Date(), sportsEventsPage.current_and_upcoming[0]?.dt_start));
+    }
+    setClockTime(`${hours}:${minutes}`);
+
+    const weekday = now.toLocaleDateString('ru-RU', { weekday: 'long' });
+    const month = getMonthName(now.getMonth());
+    const day = now.getDate();
+    setClockWeekDay(weekday);
+    setClockMonthDay(`${day} ${month}`);
+  };
+
+  //fetching data and creating timer during first render
   useEffectOnce(() => {
-      // dispatch(sportEventsTC());
+    dispatch(sportEventsTC());
+    updateClock();
   });
 
   // fetching data once in a minute for live updates
@@ -52,19 +71,7 @@ const App = () => {
   //logic for timer and widget
   useEffect(() => {
     const intervalId = setInterval(() => {
-      const now = new Date();
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      if (sportsEventsPage.current_and_upcoming[0]?.dt_start) {
-        setTimeDifference(getDateDiff(new Date(), sportsEventsPage.current_and_upcoming[0]?.dt_start));
-      }
-      setClockTime(`${hours}:${minutes}`);
-
-      const weekday = now.toLocaleDateString('ru-RU', { weekday: 'long' });
-      const month = getMonthName(now.getMonth());
-      const day = now.getDate();
-      setClockWeekDay(weekday);
-      setClockMonthDay(`${day} ${month}`);
+      updateClock();
     }, 1000);
 
     return () => clearInterval(intervalId);

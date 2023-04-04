@@ -12,8 +12,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    /*justify-content: center;*/
-    /*align-items: start;*/
 }
 
 .event {
@@ -71,8 +69,6 @@
 
 .eventNow {
     padding: 32px 68px;
-    /*width: 30%;*/
-    /*height: 107px;*/
     background-color: #3D8D44;
     border-radius: 15px;
     color: white;
