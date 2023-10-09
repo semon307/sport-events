@@ -44,6 +44,7 @@ export const setSportEventsAC = slice.actions.setSportEventsAC;
 export const sportEventsTC = () => (dispatch: Dispatch) => {
   sportEventsAPI.getSportEvents()
     .then((res) => {
+      console.log('hi');
       const mappedSportEvents = res.data.data.videostandEvents.current_and_upcoming.map(mapSportEvent)
         .sort((a: SportEvent, b: SportEvent) => a.dt_start.getTime() - b.dt_start.getTime());
       dispatch(setSportEventsAC(mappedSportEvents));
